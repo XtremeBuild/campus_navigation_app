@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".MainActivity">
+
+    <!-- Header TextView -->
+    <TextView
+        android:id="@+id/headerTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/spartan_green"
+        android:text="@string/header"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!-- Current Location TextView (Dynamic) -->
+    <TextView
+        android:id="@+id/locationTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/light_gray"
+        android:text="@string/location_prefix"
+        android:textSize="27sp"
+        app:layout_constraintTop_toBottomOf="@id/headerTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/mapView" />
+
+
+    <!-- Classroom Number Input EditText -->
+<!--    <EditText-->
+<!--        android:id="@+id/classroomInput"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="@string/class_input_hint"-->
+<!--        android:ems="10"-->
+<!--        android:autofillHints="none"-->
+<!--        android:textSize="16sp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/locationTextView"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toStartOf="@id/mapView" />-->
+    <Spinner
+        android:id="@+id/buildingSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/locationTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/mapView" />
+
+
+    <!-- Current Building ImageView (Dynamic) -->
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        app:layout_constraintEnd_toStartOf="@id/mapView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buildingSpinner"
+        android:onClick="setToLocation"/>
+
+    <ImageView
+        android:id="@+id/buildingImageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_launcher_background"
+        android:contentDescription="@string/image_description"
+        app:layout_constraintTop_toBottomOf="@id/submitButton"
+        app:layout_constraintEnd_toEndOf="@id/submitButton"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- Map view -->
+    <fragment
+        android:id="@+id/mapView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/kelly_green"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/settingsButton"
+        app:layout_constraintTop_toBottomOf="@id/headerTextView"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.7"/>
+
+
+    <!-- Help Button -->
+    <Button
+        android:id="@+id/helpButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/help"
+        android:backgroundTint="@color/refresh_green"
+        app:layout_constraintTop_toBottomOf="@id/buildingImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/mapView"/>
+
+
+    <!-- Settings Button -->
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/refresh_green"
+        android:onClick="onStartSettings"
+        android:text="@string/settings"
+        app:layout_constraintEnd_toStartOf="@id/mapView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/helpButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
